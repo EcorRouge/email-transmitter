@@ -1,10 +1,10 @@
 #!/bin/bash
 
-python version.py
+python src/version.py
 
-if [ "$APP_ENV" != "production" ]
+if [ "$ENV" != "production" ]
 then
-    watchmedo auto-restart --recursive --pattern="*.py" --directory="/src/" python app.py
+    watchmedo auto-restart --recursive --pattern="*.py" --directory="/src/" python src/main.py
 else
-    python app.py
+    python src/main.py
 fi
