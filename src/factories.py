@@ -5,12 +5,12 @@ from services import EmailService, MailjetService, SESService, MailjetSettings, 
 
 class EmailServiceFactory:
     def __init__(self):
-        self._services: Dict[str, Tuple[Type[EmailService], Type[Settings]]] = {}
+        self._services: Dict[str, Tuple[EmailService, Type[Settings]]] = {}
 
-    def register_service(self, key, service: Type[EmailService], settings: Type[Settings]):
+    def register_service(self, key, service: EmailService, settings: Type[Settings]):
         self._services[key] = (service, settings)
 
-    def create(self, key, **kwargs):
+    def _create(self, key, **kwargs):
         service_class, settings_class = self._services.get(key)
 
         if not service_class:
@@ -20,9 +20,9 @@ class EmailServiceFactory:
         return service_class(settings=settings)
 
     def get(self, key, **kwargs):
-        return self.create(key, **kwargs)
+        return self._create(key, **kwargs)
 
 
 email_factory = EmailServiceFactory()
-email_factory.register_service('mailjet', MailjetService, MailjetSettings)
-email_factory.register_service('ses', SESService, SESSettings)
+email_factory.register_service('mailjet', MailjetService(), MailjetSettings)
+email_factory.register_service('ses', SESService(), SESSettings)

@@ -4,6 +4,7 @@ from pydantic import BaseSettings
 class Settings(BaseSettings):
     SOURCE_EMAIL: str
     ERROR_REPORTING_EMAIL: str
+    CONFIG_JSON_PATH: str
 
     @staticmethod
     def get_event(event_name: str):
