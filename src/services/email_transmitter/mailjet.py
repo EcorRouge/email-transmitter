@@ -3,8 +3,8 @@ import re
 from mailjet_rest import Client
 from logger import logger
 
-from services import EmailService
-from settings import MailjetSettings
+from . import EmailService
+from ..config import MailjetConfig
 
 
 class MailjetService(EmailService):
@@ -12,7 +12,7 @@ class MailjetService(EmailService):
     def __init__(self):
         pass
 
-    def __call__(self, settings: MailjetSettings, *args, **kwargs):
+    def __call__(self, settings: MailjetConfig, *args, **kwargs):
         super().__call__(settings)
 
         match = re.match('^(.*)\s*<(.*)>$', self.settings.SOURCE_EMAIL)

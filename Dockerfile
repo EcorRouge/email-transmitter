@@ -1,18 +1,6 @@
-FROM python:3.11-bookworm
+FROM ecorrouge/rococo-service-host:latest
 
-WORKDIR /src
-
-ENV PIP_ROOT_USER_ACTION=ignore
-
-RUN python -m pip install --upgrade pip
-
-# Install Poetry
-RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/opt/poetry python && \
-    cd /usr/local/bin && \
-    ln -s /opt/poetry/bin/poetry && \
-    poetry config virtualenvs.create false
-
-RUN poetry --version
+WORKDIR /app
 
 COPY pyproject.toml poetry.lock* ./
 
@@ -22,7 +10,7 @@ RUN bash -c "if [ $INSTALL_DEV == 'true' ] ; then poetry install --no-root ; els
 
 COPY . .
 
-ENV PYTHONPATH /src
+ENV PYTHONPATH /app
 
 RUN chmod +x ./docker-entrypoint.sh
 

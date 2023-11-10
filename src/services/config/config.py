@@ -4,7 +4,7 @@ from typing import Dict
 from pydantic import BaseSettings
 
 
-class Settings(BaseSettings):
+class Config(BaseSettings):
     SERVICE_NAME: str
     SOURCE_EMAIL: str
     ERROR_REPORTING_EMAIL: str
@@ -25,19 +25,19 @@ class Settings(BaseSettings):
         return self._config['events'][event_name]
 
 
-class MailjetSettings(Settings):
+class MailjetConfig(Config):
     SERVICE_NAME: str = 'mailjet'
     MAILJET_API_KEY: str
     MAILJET_API_SECRET: str
     MAILJET_API_VERSION: str = 'v3.1'
 
 
-class SESSettings(Settings):
+class SESConfig(Config):
     pass
 
 
-settings_classes = [MailjetSettings, SESSettings]
+config_classes = [MailjetConfig, SESConfig]
 
 
-class EmailSettings(*settings_classes):
+class EmailConfig(*config_classes):
     pass

@@ -1,13 +1,14 @@
 from typing import Type, Dict, Tuple
 
-from services import EmailService, MailjetService, SESService, MailjetSettings, SESSettings, Settings
+from .email_transmitter import EmailService, MailjetService, SESService
+from .config import MailjetConfig, SESConfig, Config
 
 
 class EmailServiceFactory:
     def __init__(self):
-        self._services: Dict[str, Tuple[EmailService, Type[Settings]]] = {}
+        self._services: Dict[str, Tuple[EmailService, Type[Config]]] = {}
 
-    def register_service(self, key, service: EmailService, settings: Type[Settings]):
+    def register_service(self, key, service: EmailService, settings: Type[Config]):
         self._services[key] = (service, settings)
 
     def _create(self, key, **kwargs):
@@ -24,5 +25,5 @@ class EmailServiceFactory:
 
 
 email_factory = EmailServiceFactory()
-email_factory.register_service('mailjet', MailjetService(), MailjetSettings)
-email_factory.register_service('ses', SESService(), SESSettings)
+email_factory.register_service('mailjet', MailjetService(), MailjetConfig)
+email_factory.register_service('ses', SESService(), SESConfig)

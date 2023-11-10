@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from services.settings import EmailSettings
+from services.config.settings import EmailSettings
 
 
 class EmailService(ABC):

@@ -12,6 +12,7 @@ files = [
 ]
 
 [package.dependencies]
+exceptiongroup = {version = ">=1.0.2", markers = "python_version < \"3.11\""}
 idna = ">=2.8"
 sniffio = ">=1.1"
 
@@ -167,6 +168,20 @@ files = [
     {file = "charset_normalizer-3.3.2-cp39-cp39-win_amd64.whl", hash = "sha256:b01b88d45a6fcb69667cd6d2f7a9aeb4bf53760d7fc536bf679ec94fe9f3ff3d"},
     {file = "charset_normalizer-3.3.2-py3-none-any.whl", hash = "sha256:3e4d1f6587322d2788836a99c69062fbb091331ec940e02d12d179c1d53e25fc"},
 ]
+
+[[package]]
+name = "exceptiongroup"
+version = "1.1.3"
+description = "Backport of PEP 654 (exception groups)"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "exceptiongroup-1.1.3-py3-none-any.whl", hash = "sha256:343280667a4585d195ca1cf9cef84a4e178c4b6cf2274caef9859782b567d5e3"},
+    {file = "exceptiongroup-1.1.3.tar.gz", hash = "sha256:097acd85d473d75af5bb98e41b61ff7fe35efe6675e4f9370ec6ec5126d160e9"},
+]
+
+[package.extras]
+test = ["pytest (>=6)"]
 
 [[package]]
 name = "h11"
@@ -379,13 +394,13 @@ use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
 name = "rococo"
-version = "0.1.18"
+version = "0.1.21"
 description = "A Python library to help build things the way we want them built"
 optional = false
 python-versions = ">=3.10"
 files = [
-    {file = "rococo-0.1.18-py3-none-any.whl", hash = "sha256:2717182b7eb0f47d3fa9315ea543f418ec6bbb35540d3f788aeb9995037c8ccd"},
-    {file = "rococo-0.1.18.tar.gz", hash = "sha256:9b5ac787cfc6d9dd7588968fc019fea4811960856566769f3c836e4275447219"},
+    {file = "rococo-0.1.21-py3-none-any.whl", hash = "sha256:6a5cc7f56603211fc3ea6e788e6a9070082320c74ccd6149fc02580c02a1ba4d"},
+    {file = "rococo-0.1.21.tar.gz", hash = "sha256:f16751bc7432d8bc675c676ff160579b321a61fb27f33bff5ec570d6660aac7f"},
 ]
 
 [package.dependencies]
@@ -596,5 +611,5 @@ files = [
 
 [metadata]
 lock-version = "2.0"
-python-versions = "^3.11"
-content-hash = "84c3bc08f586abc4aad7d4dc96e60e59a27003168d141759530e7adfd3645cb4"
+python-versions = "^3.10"
+content-hash = "2cf7fae1518fd5f7e42fbe9809289123bc4606c0f915d83dcc0937ea30103cbb"
