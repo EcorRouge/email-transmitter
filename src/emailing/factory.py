@@ -1,24 +1,26 @@
 from typing import Type, Dict, Tuple
 
-from email_transmitter import EmailService, MailjetService, SESService
-from config import MailjetConfig, SESConfig, Config
+from .base import EmailService
+from .mailjet import MailjetService
+from .ses import SESService
+from .config import MailjetConfig, SESConfig, Config
 
 
 class EmailServiceFactory:
     def __init__(self):
         self._services: Dict[str, Tuple[EmailService, Type[Config]]] = {}
 
-    def register_service(self, key, service: EmailService, settings: Type[Config]):
-        self._services[key] = (service, settings)
+    def register_service(self, key, service: EmailService, config: Type[Config]):
+        self._services[key] = (service, config)
 
     def _create(self, key, **kwargs):
-        service_class, settings_class = self._services.get(key)
+        service_class, config_class = self._services.get(key)
 
         if not service_class:
             raise ValueError(key)
 
-        settings = settings_class(**kwargs)
-        return service_class(settings=settings)
+        config = config_class(**kwargs)
+        return service_class(config=config)
 
     def get(self, key, **kwargs):
         return self._create(key, **kwargs)

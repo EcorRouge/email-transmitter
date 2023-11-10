@@ -1,5 +1,5 @@
 from .base import EmailService
-from config import SESConfig
+from .config import SESConfig
 
 
 class SESService(EmailService):

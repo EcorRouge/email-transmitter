@@ -3,7 +3,7 @@ import re
 from mailjet_rest import Client
 
 from .base import EmailService
-from config import MailjetConfig
+from .config import MailjetConfig
 
 
 class MailjetService(EmailService):

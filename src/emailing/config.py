@@ -1,7 +1,7 @@
 import json
 from typing import Dict
 
-from pydantic import BaseSettings
+from pydantic import BaseSettings, Extra
 
 
 class Config(BaseSettings):
@@ -11,6 +11,9 @@ class Config(BaseSettings):
     CONFIG_JSON_PATH: str
 
     _config: Dict
+
+    class Config:
+        extra = Extra.ignore
 
     def read_config_json(self):
         with open(self.CONFIG_JSON_PATH) as config:

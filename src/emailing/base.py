@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from config import EmailConfig
+from .config import EmailConfig
 
 
 class EmailService(ABC):
