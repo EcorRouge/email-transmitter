@@ -1,6 +1,6 @@
-FROM ecorrouge/rococo-service-host:latest
+FROM afeef/rococo_service_processor:latest
 
-WORKDIR /app
+WORKDIR /app/src
 
 COPY pyproject.toml poetry.lock* ./
 
@@ -8,10 +8,14 @@ COPY pyproject.toml poetry.lock* ./
 ARG INSTALL_DEV=false
 RUN bash -c "if [ $INSTALL_DEV == 'true' ] ; then poetry install --no-root ; else poetry install --no-root --no-dev ; fi"
 
-COPY . .
+COPY ./src ./
 
 ENV PYTHONPATH /app
 
+WORKDIR /app
+
+COPY ./docker-entrypoint.sh ./
 RUN chmod +x ./docker-entrypoint.sh
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
+#ENTRYPOINT [ "/bin/bash", "-l", "-c" ]

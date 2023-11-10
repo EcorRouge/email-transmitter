@@ -1,7 +1,7 @@
 from typing import Type, Dict, Tuple
 
-from .email_transmitter import EmailService, MailjetService, SESService
-from .config import MailjetConfig, SESConfig, Config
+from email_transmitter import EmailService, MailjetService, SESService
+from config import MailjetConfig, SESConfig, Config
 
 
 class EmailServiceFactory:

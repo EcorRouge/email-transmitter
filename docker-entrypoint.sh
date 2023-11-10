@@ -4,7 +4,7 @@ python src/version.py
 
 if [ "$ENV" != "production" ]
 then
-    watchmedo auto-restart --recursive --pattern="*.py" --directory="/src/" python src/main.py
+    watchmedo auto-restart --recursive --pattern="*.py" --directory="/src/" python src/process.py
 else
-    python src/main.py
+    python src/process.py
 fi

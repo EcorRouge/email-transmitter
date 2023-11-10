@@ -1,22 +1,22 @@
 from abc import ABC, abstractmethod
 
-from services.config.settings import EmailSettings
+from config import EmailConfig
 
 
 class EmailService(ABC):
     """
         Base class for email service providers
     """
-    settings: EmailSettings
+    config: EmailConfig
 
     @abstractmethod
     def __init__(self):
         pass
 
     @abstractmethod
-    def __call__(self, settings: EmailSettings, *args, **kwargs):
-        self.settings = settings
+    def __call__(self, config: EmailConfig, *args, **kwargs):
+        self.config = config
 
     @abstractmethod
-    def send_message(self, event_name: str, event_data: dict, to_addresses: list):
+    def send_email(self, message: dict):
         return NotImplementedError
