@@ -394,13 +394,13 @@ use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
 name = "rococo"
-version = "0.1.21"
+version = "0.1.23"
 description = "A Python library to help build things the way we want them built"
 optional = false
 python-versions = ">=3.10"
 files = [
-    {file = "rococo-0.1.21-py3-none-any.whl", hash = "sha256:6a5cc7f56603211fc3ea6e788e6a9070082320c74ccd6149fc02580c02a1ba4d"},
-    {file = "rococo-0.1.21.tar.gz", hash = "sha256:f16751bc7432d8bc675c676ff160579b321a61fb27f33bff5ec570d6660aac7f"},
+    {file = "rococo-0.1.23-py3-none-any.whl", hash = "sha256:f940a56dcbafe7fb3d10df118b331856a0f2f39cc3a5f37fe753c6926e2cb638"},
+    {file = "rococo-0.1.23.tar.gz", hash = "sha256:07cb6b52a3dc1d54820ae57e88f023da3533fba579f6b5b263bf666d7bf3bc60"},
 ]
 
 [package.dependencies]
@@ -627,4 +627,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "80d712c3926c2e61dce93a0058d5367eaac6541d632c78dbd25ff9c721488b1d"
+content-hash = "5a404954a4658f02b6d350ac2e964dc617c310b463797f59b73f7c1430a39df5"

@@ -6,7 +6,7 @@ import logging
 from rococo.config import BaseConfig
 from rococo.messaging import BaseServiceProcessor
 
-from .factory import email_factory
+from rococo.emailing.factory import email_factory
 
 logging.basicConfig(level=logging.INFO)
 
