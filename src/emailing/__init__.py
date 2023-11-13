@@ -3,7 +3,8 @@ from .base import EmailService
 from .mailjet import MailjetService
 from .ses import SESService
 from .factory import email_factory
-from .enums import EmailServiceProvider
+from .enums import EmailProvider
+from .processor import EmailServiceProcessor
 
 
 __all__ = [
@@ -15,5 +16,6 @@ __all__ = [
     MailjetService,
     SESService,
     email_factory,
-    EmailServiceProvider
+    EmailProvider,
+    EmailServiceProcessor
 ]

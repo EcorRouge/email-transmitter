@@ -1,35 +1,46 @@
 import json
+import os.path
 from typing import Dict
 
 from pydantic import BaseSettings, Extra
 
+from .enums import EmailProvider
+
 
 class Config(BaseSettings):
-    SERVICE_NAME: str
-    SOURCE_EMAIL: str
-    ERROR_REPORTING_EMAIL: str
-    CONFIG_JSON_PATH: str
+    CONFIG_FILEPATH: str
+    EMAIL_PROVIDER: EmailProvider
 
-    _config: Dict
+    _config: Dict = {}
 
     class Config:
         extra = Extra.ignore
 
-    def read_config_json(self):
-        with open(self.CONFIG_JSON_PATH) as config:
+    def read_config(self):
+        if not os.path.isfile(self.CONFIG_FILEPATH):
+            raise OSError(f'Config.json file not found on specified path. {self.CONFIG_FILEPATH}')
+
+        with open(self.CONFIG_FILEPATH) as config:
             self._config = json.load(config)
 
     def get_config(self):
         for configuration in self._config['configurations']:
-            if configuration['provider'] == self.SERVICE_NAME:
+            if configuration['provider'] == self.EMAIL_PROVIDER:
                 return configuration
 
     def get_event(self, event_name: str):
         return self._config['events'][event_name]
 
+    @property
+    def SOURCE_EMAIL(self):
+        return self._config.get("sourceEmail")
+
+    @property
+    def ERROR_REPORTING_EMAIL(self):
+        return self._config.get('errorReportingEmail')
+
 
 class MailjetConfig(Config):
-    SERVICE_NAME: str = 'mailjet'
     MAILJET_API_KEY: str
     MAILJET_API_SECRET: str
     MAILJET_API_VERSION: str = 'v3.1'
@@ -39,7 +50,10 @@ class SESConfig(Config):
     pass
 
 
-config_classes = [MailjetConfig, SESConfig]
+config_classes = [
+    MailjetConfig,
+    SESConfig
+]
 
 
 class EmailConfig(*config_classes):

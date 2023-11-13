@@ -7,21 +7,22 @@ import logging
 from rococo.config import BaseConfig
 from rococo.messaging import BaseServiceProcessor
 
-from emailing import EmailServiceProvider, email_factory
+from .factory import email_factory
 
 logging.basicConfig(level=logging.INFO)
 
 
 class EmailServiceProcessor(BaseServiceProcessor):
     """
-    Service processor that logs messages
+    Service processor that sends emails
     """
     email_service = None
 
     def __init__(self):
         super().__init__()
 
-        self.email_service = email_factory.get(EmailServiceProvider.mailjet, **BaseConfig().get_env_vars())
+        config = BaseConfig().get_env_vars()
+        self.email_service = email_factory.get(**config)
 
     def process(self, message):
         logging.info("Received message: %s to the service processor image!", message)

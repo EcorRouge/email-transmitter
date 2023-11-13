@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class EmailServiceProvider(str, Enum):
+class EmailProvider(str, Enum):
     mailjet = 'mailjet'
     ses = 'ses'
 
