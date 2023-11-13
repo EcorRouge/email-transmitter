@@ -1,6 +1,6 @@
 FROM ecorrouge/rococo_service_processor:latest
 
-WORKDIR /app/src/services/email-transmitter
+WORKDIR /app/src/services/email_transmitter
 
 COPY pyproject.toml poetry.lock* ./
 
