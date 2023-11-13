@@ -2,6 +2,7 @@
 Test module
 """
 import json
+
 import pika
 from rococo.config import BaseConfig
 
@@ -30,11 +31,16 @@ def test_rabbitmq_send_message():
     # Declare a queue
     channel.queue_declare(queue=config.get_env_var("RABBITMQ_QUEUE"), durable=True)
 
+    message = {
+        'event': 'TEST_EMAIL_EVENT',
+        'data': dict(key1="value1", key2="value2"),
+        'to_emails': ["janjua.afeef@gmail.com"]
+    }
     # Publish a message to the queue
     channel.basic_publish(
         exchange='',
         routing_key=config.get_env_var("RABBITMQ_QUEUE"),
-        body=json.dumps({"message": "Hello, RabbitMQ!"})
+        body=str.encode(json.dumps(message))
     )
 
     print("Message sent to RabbitMQ.")

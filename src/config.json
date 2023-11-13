@@ -2,11 +2,18 @@
     "configurations": [
         {
             "provider": "mailjet",
-            "sourceEmail": "SecondSight <system@secondsight.ai>",
-            "errorReportingEmail": "system@secondsight.ai"
+            "sourceEmail": "TestSight <afeef.janjua@skajtech.com>",
+            "errorReportingEmail": "afeef.janjua@skajtech.com"
         }
     ],
     "events": {
+        "TEST_EMAIL_EVENT": {
+            "subject": "Test Subject",
+            "templateName": "TEST_EMAIL_EVENT",
+            "id": {
+                "mailjet": 5305461
+            }
+        },
         "USER_CREATED": {
             "subject": "Welcome {{var:recipient_name}}",
             "templateName": "Welcome (PROD and TEST)",

@@ -11,6 +11,8 @@ COPY ./src/config.json ./
 
 WORKDIR /app
 
+COPY ./tests/test_queue.py ./tests/test_queue.py
+
 ENV PYTHONPATH /app
 
 COPY ./docker-entrypoint.sh ./

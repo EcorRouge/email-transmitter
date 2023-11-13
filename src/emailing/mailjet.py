@@ -24,10 +24,12 @@ class MailjetService(EmailService):
             version=self.config.MAILJET_API_VERSION
         )
 
+        return self
+
     def send_email(self, message: dict) -> Any:
-        event_name = message.get('event_name')
-        event_data = message.get('event_data')
-        to_addresses = message.get('to_addresses')
+        event_name = message.get('event')
+        event_data = message.get('data')
+        to_addresses = message.get('to_emails')
 
         event_mapping = self.config.get_event(event_name)
         data = {

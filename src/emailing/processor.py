@@ -1,7 +1,6 @@
 """
 Base example of a service processor within the child image
 """
-
 import logging
 
 from rococo.config import BaseConfig
@@ -24,6 +23,8 @@ class EmailServiceProcessor(BaseServiceProcessor):
         config = BaseConfig().get_env_vars()
         self.email_service = email_factory.get(**config)
 
+        assert self.email_service is not None
+
     def process(self, message):
         logging.info("Received message: %s to the service processor image!", message)
-        self.email_service.send_message(message)
+        response = self.email_service.send_email(message)

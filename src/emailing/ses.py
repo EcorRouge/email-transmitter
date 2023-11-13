@@ -12,5 +12,7 @@ class SESService(EmailService):
     def __call__(self, config: SESConfig, *args, **kwargs):
         super().__call__(config)
 
+        return self
+
     def send_email(self, message: dict) -> Any:
         pass
