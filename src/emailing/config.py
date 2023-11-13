@@ -1,6 +1,7 @@
 import json
 import os.path
-from typing import Dict
+from pprint import pprint
+from typing import Any
 
 from pydantic import BaseSettings, Extra
 
@@ -11,33 +12,39 @@ class Config(BaseSettings):
     CONFIG_FILEPATH: str
     EMAIL_PROVIDER: EmailProvider
 
-    _config: Dict = {}
+    events: Any = None
+    provider_config: Any = None
 
     class Config:
         extra = Extra.ignore
+
+    def __init__(self, **kwargs: Any):
+        super().__init__(**kwargs)
+        self.read_config()
 
     def read_config(self):
         if not os.path.isfile(self.CONFIG_FILEPATH):
             raise OSError(f'Config.json file not found on specified path. {self.CONFIG_FILEPATH}')
 
         with open(self.CONFIG_FILEPATH) as config:
-            self._config = json.load(config)
+            config = json.load(config)
+            self.events = config.get('events')
 
-    def get_config(self):
-        for configuration in self._config['configurations']:
-            if configuration['provider'] == self.EMAIL_PROVIDER:
-                return configuration
+            for configuration in config['configurations']:
+                if configuration['provider'] == self.EMAIL_PROVIDER:
+                    self.provider_config = configuration
+                    pprint(self.provider_config)
 
     def get_event(self, event_name: str):
-        return self._config['events'][event_name]
+        return self.events.get(event_name)
 
     @property
-    def SOURCE_EMAIL(self):
-        return self._config.get("sourceEmail")
+    def SOURCE_EMAIL(self) -> str:
+        return self.provider_config.get("sourceEmail")
 
     @property
-    def ERROR_REPORTING_EMAIL(self):
-        return self._config.get('errorReportingEmail')
+    def ERROR_REPORTING_EMAIL(self) -> str:
+        return self.provider_config.get('errorReportingEmail')
 
 
 class MailjetConfig(Config):

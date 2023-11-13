@@ -1,19 +1,20 @@
-FROM afeef/rococo_service_processor:latest
+FROM ecorrouge/rococo_service_processor:latest
 
-WORKDIR /app
+WORKDIR /app/src/services/emailing
 
 COPY pyproject.toml poetry.lock* ./
 
-# Allow installing dev dependencies to run tests
-ARG INSTALL_DEV=false
-RUN bash -c "if [ $INSTALL_DEV == 'true' ] ; then poetry install --no-root ; else poetry install --no-root --no-dev ; fi"
+RUN poetry install
 
-COPY ./src ./src
+COPY ./src/emailing ./
+COPY ./src/config.json ./
+
+WORKDIR /app
 
 ENV PYTHONPATH /app
 
 COPY ./docker-entrypoint.sh ./
 RUN chmod +x ./docker-entrypoint.sh
 
-ENTRYPOINT ["./docker-entrypoint.sh"]
+ENTRYPOINT ["./docker-entrypoint.sh", "-l", "-c"]
 #ENTRYPOINT [ "/bin/bash", "-l", "-c" ]
