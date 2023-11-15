@@ -14,8 +14,8 @@ def test_rabbitmq_send_message():
     config = BaseConfig()
 
     credentials = pika.PlainCredentials(
-        username=config.get_env_var("RABBITMQ_DEFAULT_USER"),
-        password=config.get_env_var("RABBITMQ_DEFAULT_PASS")
+        username=config.get_env_var("RABBITMQ_USER"),
+        password=config.get_env_var("RABBITMQ_PASSWORD")
     )
     parameters = pika.ConnectionParameters(
         host=config.get_env_var("RABBITMQ_HOST"),
