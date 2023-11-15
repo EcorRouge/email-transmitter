@@ -1,4 +1,4 @@
-FROM ecorrouge/rococo_service_processor:latest
+FROM ecorrouge/rococo-service-host
 
 WORKDIR /app/src/services/email_transmitter
 
