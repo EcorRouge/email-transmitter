@@ -2,8 +2,8 @@
     "configurations": [
         {
             "provider": "mailjet",
-            "sourceEmail": "TestSight <afeef.janjua@skajtech.com>",
-            "errorReportingEmail": "afeef.janjua@skajtech.com"
+            "sourceEmail": "SecondSight <system@secondsight.ai>",
+            "errorReportingEmail": "system@secondsight.ai"
         }
     ],
     "events": {
@@ -12,139 +12,6 @@
             "templateName": "TEST_EMAIL_EVENT",
             "id": {
                 "mailjet": 5305461
-            }
-        },
-        "USER_CREATED": {
-            "subject": "Welcome {{var:recipient_name}}",
-            "templateName": "Welcome (PROD and TEST)",
-            "id": {
-                "mailjet": 4777555
-            }
-        },
-        "RESET_PASSWORD": {
-            "subject": "Reset your password",
-            "templateName": "Reset Password (PROD and TEST)",
-            "id": {
-                "mailjet": 4781139
-            }
-        },
-        "BROKER_INVITE": {
-            "subject": "Broker Invitation",
-            "templateName": "Broker Invite",
-            "id": {
-                "mailjet": 4861833
-            }
-        },
-        "CUSTOMER_SHARE_NOTICE": {
-            "subject": "Customer Share Notice",
-            "templateName": "Customer Share Notice",
-            "id": {
-                "mailjet": 4861895
-            }
-        },
-        "CLIENT_BROKER_INVITE": {
-            "subject": "Broker Invitation",
-            "templateName": "Client Broker Invite",
-            "id": {
-                "mailjet": 4897992
-            }
-        },
-        "BROKER_ADDED_NOTICE": {
-            "subject": "Broker Addition By Client",
-            "templateName": "Client Broker Add Notice",
-            "id": {
-                "mailjet": 4901002
-            }
-        },
-        "UPDATE_PASSWORD": {
-            "subject": "Update your password",
-            "templateName": "Update Password",
-            "id": {
-                "mailjet": 4934622
-            }
-        },
-        "BROKER_INVITE_BROKER": {
-            "subject": "Welcome {{var:recipient_name}}",
-            "templateName": "Broker Welcome (PROD and TEST)",
-            "id": {
-                "mailjet": 4889200
-            }
-        },
-        "JLPC_USER_CREATED": {
-            "subject": "Welcome {{var:recipient_name}}",
-            "templateName": "JL Client Email Verification",
-            "id": {
-                "mailjet": 4900248
-            }
-        },
-        "JLPC_PASSWORD_RESET": {
-            "subject": "Your Website Privacy Risk Memo is Ready",
-            "templateName": "JL Client New Report and Setup",
-            "id": {
-                "mailjet": 4951610
-            }
-        },
-        "BROKER_INVITE_CUSTOMER": {
-            "subject": "Welcome {{var:recipient_name}}",
-            "templateName": "Broker WB: send client an invite",
-            "id": {
-                "mailjet": 4838523
-            }
-        },
-        "BROKER_INVITE_CUSTOMER_WITH_PAID_SUBSCRIPTION": {
-            "subject": "Welcome {{var:recipient_name}}",
-            "templateName": "Broker WB: send client an invite with a paid subscription",
-            "id": {
-                "mailjet": 4838646
-            }
-        },
-        "REPORT_DOWNLOAD": {
-            "subject": "Your Client\u2019s Scan Is Complete",
-            "templateName": "ReportDownload",
-            "id": {
-                "mailjet": 4902528
-            }
-        },
-        "NOTIFY_BROKER_FOR_QUICK_QUOTE_READY": {
-            "subject": "Cyber client updated their quick quote data",
-            "templateName": "Company WB: Notify broker client ready for quick quote",
-            "id": {
-                "mailjet": 5027842
-            }
-        },
-        "NOTIFY_BROKER_FOR_QUICK_QUOTE_UPDATE": {
-            "subject": "Cyber client ready for quick quote",
-            "templateName": "Company WB: Notify broker client's quick quote data has updated",
-            "id": {
-                "mailjet": 5027872
-            }
-        },
-        "ALPHA_USER_WELCOME_EMAIL": {
-            "subject": "Welcome to SecondSight Alpha!",
-            "templateName": "Welcome to Alpha",
-            "id": {
-                "mailjet": 5118059
-            }
-        },
-        "SIGNUP_FOR_ALPHA_WORKSHOP": {
-            "subject": "Signup for Alpha workshop",
-            "templateName": "Signup for Alpha workshop",
-            "id": {
-                "mailjet": 5118083
-            }
-        },
-        "NEW_ALPHA_SIGNUP": {
-            "subject": "Signup for Alpha workshop",
-            "templateName": "New Alpha signup",
-            "id": {
-                "mailjet": 5118259
-            }
-        },
-        "NOTIFY_BROKER_FOR_FULL_QUOTE_READY": {
-            "subject": "Your cyber client is ready for Quick Quotes",
-            "templateName": "Company WB Notify broker client has finished Step 3 of Quick Start",
-            "id": {
-                "mailjet": 5131700
             }
         }
     }
