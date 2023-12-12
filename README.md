@@ -51,7 +51,7 @@ The `tests/test_queue.py` includes a simple test that will send a test email mes
 
 - To send a test email message to rabbitmq, please execute the following command
 ```shell
-`docker exec -it email_transmitter poetry run pytest src/services/email_tran smitter/tests`
+`docker exec -it email_transmitter poetry run pytest src/services/email_transmitter/tests`
 ```
 
 If the message is delivered successfully to rabbitmq, the test will pass and you will the following output.
