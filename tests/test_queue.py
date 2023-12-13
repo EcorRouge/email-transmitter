@@ -29,7 +29,9 @@ def test_rabbitmq_send_message():
     channel = connection.channel()
 
     # Declare a queue
-    channel.queue_declare(queue=config.get_env_var("RABBITMQ_QUEUE"), durable=True)
+    processor_class_name = config.get_env_var("PROCESSOR_TYPE")
+    queue_name = config.get_env_var(f'{processor_class_name}_QUEUE_NAME')
+    channel.queue_declare(queue=queue_name, durable=True)
 
     message = {
         'event': 'TEST_EMAIL_EVENT',
@@ -39,7 +41,7 @@ def test_rabbitmq_send_message():
     # Publish a message to the queue
     channel.basic_publish(
         exchange='',
-        routing_key=config.get_env_var("RABBITMQ_QUEUE"),
+        routing_key=queue_name,
         body=str.encode(json.dumps(message))
     )
 
