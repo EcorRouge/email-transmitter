@@ -13,6 +13,10 @@ WORKDIR /app
 
 ENV PYTHONPATH /app
 
+ENV MESSAGING_TYPE=RabbitMqConnection
+ENV PROCESSOR_TYPE=EmailServiceProcessor
+ENV PROCESSOR_MODULE=services.email_transmitter.src.email_processor
+
 COPY ./docker-entrypoint.sh ./
 RUN chmod +x ./docker-entrypoint.sh
 
