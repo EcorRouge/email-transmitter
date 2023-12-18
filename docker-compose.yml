@@ -6,6 +6,7 @@ services:
     container_name: rabbitmq
     env_file:
       - .env
+      - .env.secrets
     ports:
       - "5672:5672"
     expose:
@@ -24,6 +25,7 @@ services:
       dockerfile: Dockerfile
     env_file:
       - .env
+      - .env.secrets
     depends_on:
       rabbitmq:
         condition: service_healthy
