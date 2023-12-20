@@ -30,8 +30,8 @@ def test_rabbitmq_send_message():
 
     # Declare a queue
     processor_class_name = config.get_env_var("PROCESSOR_TYPE")
-    queue_name = config.get_env_var(
-        processor_class_name+"_QUEUE_NAME")+config.get_env_var("QUEUE_NAME_PREFIX")
+    queue_name = config.get_env_var("QUEUE_NAME_PREFIX")+config.get_env_var(
+        processor_class_name+"_QUEUE_NAME")
     channel.queue_declare(queue=queue_name, durable=True)
 
     message = {
