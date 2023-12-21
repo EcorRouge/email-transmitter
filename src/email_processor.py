@@ -20,8 +20,14 @@ class EmailServiceProcessor(BaseServiceProcessor):
     def __init__(self):
         super().__init__()
 
-        config = BaseConfig().get_env_vars()
-        self.email_service = email_factory.get(**config)
+        config = BaseConfig()
+        if config.get_env_var("EMAIL_PROVIDER").lower() == "mailjet":
+            logging.info(config.get_env_var("MAILJET_API_KEY"))
+            if config.get_env_var("MAILJET_API_KEY") in [None, "", False]:
+                raise ValueError("MAILJET_API_KEY cant be empty")
+            if config.get_env_var("MAILJET_API_SECRET") in [None,"",False]:
+                raise ValueError("MAILJET_API_SECRET cant be empty")
+        self.email_service = email_factory.get(**config.get_env_vars())
 
         assert self.email_service is not None
 
