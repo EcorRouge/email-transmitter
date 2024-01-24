@@ -4,6 +4,8 @@ WORKDIR /app/src/services/email_transmitter
 
 COPY pyproject.toml poetry.lock* ./
 
+COPY ./pyproject.toml /app/pyproject.toml
+
 RUN poetry install
 
 COPY ./src ./src
