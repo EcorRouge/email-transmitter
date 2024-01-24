@@ -1,26 +1,13 @@
 """
 Base example of a service processor within the child image
 """
-import logging
-
+from logger import Logger
 from rococo.config import BaseConfig
 from rococo.messaging import BaseServiceProcessor
 
 from rococo.emailing.factory import email_factory
 
-# Create a custom logger
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
-
-# Create a formatter
-formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(module)s:%(lineno)d - %(message)s')
-
-# Create a handler and set the formatter
-handler = logging.StreamHandler()
-handler.setFormatter(formatter)
-
-# Add the handler to the logger
-logger.addHandler(handler)
+logger = Logger().get_logger()
 
 class EmailServiceProcessor(BaseServiceProcessor):
     """
