@@ -8,8 +8,19 @@ from rococo.messaging import BaseServiceProcessor
 
 from rococo.emailing.factory import email_factory
 
-logging.basicConfig(level=logging.INFO)
+# Create a custom logger
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
+# Create a formatter
+formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(module)s:%(lineno)d - %(message)s')
+
+# Create a handler and set the formatter
+handler = logging.StreamHandler()
+handler.setFormatter(formatter)
+
+# Add the handler to the logger
+logger.addHandler(handler)
 
 class EmailServiceProcessor(BaseServiceProcessor):
     """
@@ -22,7 +33,7 @@ class EmailServiceProcessor(BaseServiceProcessor):
 
         config = BaseConfig()
         if config.get_env_var("EMAIL_PROVIDER").lower() == "mailjet":
-            logging.info(config.get_env_var("MAILJET_API_KEY"))
+            logger.info("MailJet API Key : %s",config.get_env_var("MAILJET_API_KEY"))
             if config.get_env_var("MAILJET_API_KEY") in [None, "", False]:
                 raise ValueError("MAILJET_API_KEY cant be empty")
             if config.get_env_var("MAILJET_API_SECRET") in [None,"",False]:
@@ -32,5 +43,5 @@ class EmailServiceProcessor(BaseServiceProcessor):
         assert self.email_service is not None
 
     def process(self, message):
-        logging.info("Received message: %s to the service processor image!", message)
+        logger.info("Received message: %s to the service processor image!", message)
         response = self.email_service.send_email(message)
