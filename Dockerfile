@@ -6,7 +6,7 @@ COPY pyproject.toml poetry.lock* ./
 
 COPY ./pyproject.toml /app/pyproject.toml
 
-RUN poetry install
+RUN poetry lock --no-update && poetry install
 
 COPY ./src ./src
 COPY ./tests ./tests
