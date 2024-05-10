@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "email-transmitter"
-version = "0.1.5"
+version = "0.1.6"
 description = ""
 authors = ["Jay Grieves <jaygrieves@gmail.com>"]
 readme = "README.md"
@@ -9,7 +9,7 @@ readme = "README.md"
 python = "^3.10"
 mailjet-rest = "^1.3.4"
 pydantic = "^1.10.13"
-rococo = "1.0.9"
+rococo = "1.0.10"
 rollbar = "^0.16.3"
 watchdog = "^3.0.0"
 
