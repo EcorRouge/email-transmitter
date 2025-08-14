@@ -2,11 +2,15 @@ FROM ecorrouge/rococo-service-host
 
 WORKDIR /app/src/services/email_transmitter
 
+# Copy poetry files
 COPY pyproject.toml poetry.lock* ./
 
-COPY ./pyproject.toml /app/pyproject.toml
+# Configure Poetry to install dependencies globally (no virtual environment)
+RUN poetry config virtualenvs.create false
 
-RUN poetry lock --no-update && poetry install
+# Install ALL dependencies (main + dev) globally in the base image
+RUN poetry install --no-root && \
+    poetry cache clear --all pypi
 
 COPY ./src ./src
 COPY ./tests ./tests

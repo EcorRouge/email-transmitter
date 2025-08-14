@@ -1,0 +1,48 @@
+name: publish-to-docker-hub
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Verify Docker login
+        run: |
+          docker info
+          docker pull python:3.10
+
+      - name: Build and push for python-3.10 / latest
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./Dockerfile
+          build-args: |
+            PYTHON_VERSION=3.10.14
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/email-transmitter:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/email-transmitter:python-3.10
+            ${{ secrets.DOCKERHUB_USERNAME }}/email-transmitter:sha-${{ github.sha }}
+
+      - name: Build and push for python-3.11
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./Dockerfile
+          build-args: |
+            PYTHON_VERSION=3.11
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/email-transmitter:python-3.11
