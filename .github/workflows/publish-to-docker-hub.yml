@@ -29,7 +29,7 @@ jobs:
           context: .
           file: ./Dockerfile
           build-args: |
-            PYTHON_VERSION=3.10.14
+            SERVICE_HOST_VERSION=python-3.10
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/email-transmitter:latest
@@ -42,7 +42,7 @@ jobs:
           context: .
           file: ./Dockerfile
           build-args: |
-            PYTHON_VERSION=3.11
+            SERVICE_HOST_VERSION=python-3.11
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/email-transmitter:python-3.11
