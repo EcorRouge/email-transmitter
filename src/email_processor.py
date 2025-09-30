@@ -1,13 +1,15 @@
 """
 Base example of a service processor within the child image
 """
-from logger import Logger
+import logging
 from rococo.config import BaseConfig
 from rococo.messaging import BaseServiceProcessor
 
 from rococo.emailing.factory import email_factory
 
-logger = Logger().get_logger()
+logging.getLogger("pika").setLevel(logging.WARNING)
+
+logger = logging.getLogger(__name__)
 
 class EmailServiceProcessor(BaseServiceProcessor):
     """
@@ -30,5 +32,9 @@ class EmailServiceProcessor(BaseServiceProcessor):
         assert self.email_service is not None
 
     def process(self, message):
-        logger.info("Received message: %s to the service processor image!", message)
-        response = self.email_service.send_email(message)
+        logger.info("Received message: %s to the service processor image", message)
+        try:
+            response = self.email_service.send_email(message)
+            logger.debug(f"Processing result: {response}")
+        except Exception as e:
+            logger.exception("Failed to process message", e)

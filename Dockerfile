@@ -1,4 +1,5 @@
-FROM ecorrouge/rococo-service-host
+ARG SERVICE_HOST_VERSION=latest
+FROM ecorrouge/rococo-service-host:${SERVICE_HOST_VERSION}
 
 WORKDIR /app/src/services/email_transmitter
 
@@ -17,7 +18,7 @@ COPY ./tests ./tests
 
 WORKDIR /app
 
-ENV PYTHONPATH /app
+ENV PYTHONPATH=/app
 
 ENV MESSAGING_TYPE=RabbitMqConnection
 ENV PROCESSOR_TYPE=EmailServiceProcessor
