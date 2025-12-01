@@ -12,31 +12,6 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: SonarQube Install and Execute Analysis
-        env:
-          SONAR_GLOBAL_TOKEN: ${{ secrets.SONAR_GLOBAL_TOKEN }}
-          SONAR_GLOBAL_HOST: ${{ secrets.SONAR_GLOBAL_HOST }}
-        run: |
-          echo "Installing SonarScanner dependencies..."
-          sudo apt-get update && sudo apt-get install -y openjdk-17-jre unzip
-          
-          echo "Downloading SonarScanner..."
-          export SONAR_SCANNER_VERSION=5.0.1.3006
-          export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
-          curl --create-dirs -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
-          unzip -qq $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
-          export PATH=$SONAR_SCANNER_HOME/bin:$PATH
-          
-          echo "Running SonarQube Analysis..."
-          sonar-scanner \
-            -Dsonar.projectKey=email-transmitter \
-            -Dsonar.sources=. \
-            -Dsonar.host.url=$SONAR_GLOBAL_HOST \
-            -Dsonar.token=$SONAR_GLOBAL_TOKEN \
-            -Dsonar.scm.disabled=true
-          
-          echo "✅ SonarQube scan completed successfully"
-
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
