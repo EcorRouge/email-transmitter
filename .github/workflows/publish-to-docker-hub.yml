@@ -3,7 +3,7 @@ name: publish-to-docker-hub
 on:
   push:
     branches:
-      - main
+      - ilyaskarim-ROC-92
 
 jobs:
   build-and-push:
@@ -12,7 +12,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: SonarQube: Install and Execute Analysis
+      - name: SonarQube Install and Execute Analysis
         env:
           SONAR_GLOBAL_TOKEN: ${{ secrets.SONAR_GLOBAL_TOKEN }}
           SONAR_GLOBAL_HOST: ${{ secrets.SONAR_GLOBAL_HOST }}
