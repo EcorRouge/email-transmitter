@@ -3,7 +3,7 @@ name: sonarqube
 on:
   push:
     branches:
-      - ilyaskarim-ROC-92
+      - main
 
 jobs:
   sonarqube:
