@@ -3,7 +3,7 @@ name: publish-to-docker-hub
 on:
   push:
     branches:
-      - ilyaskarim-ROC-92
+      - main
 
 jobs:
   build-and-push:
